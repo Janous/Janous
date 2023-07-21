@@ -3,10 +3,30 @@
     <title>Janous</title>
     <link href="https://janous.github.io/feed.xml" rel="self" />
     <link href="https://janous.github.io" />
-    <updated>1970-01-01T08:00:00+08:00</updated>
+    <updated>2023-07-21T23:23:15+08:00</updated>
     <author>
         <name>JanousAI</name>
     </author>
     <id>https://janous.github.io</id>
 
+    <entry>
+        <title>Dashboard</title>
+        <author>
+            <name>JanousAI</name>
+        </author>
+        <link href="https://janous.github.io/dashboard.html"/>
+        <id>https://janous.github.io/dashboard.html</id>
+
+        <updated>2023-07-21T23:23:15+08:00</updated>
+            <summary>
+                <![CDATA[
+                    I love publii
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>I love publii</p>
+            ]]>
+        </content>
+    </entry>
 </feed>

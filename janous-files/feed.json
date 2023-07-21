@@ -9,5 +9,19 @@
         "name": "JanousAI"
     },
     "items": [
+        {
+            "id": "https://janous.github.io/dashboard.html",
+            "url": "https://janous.github.io/dashboard.html",
+            "title": "Dashboard",
+            "summary": "I love publii",
+            "content_html": "<p>I love publii</p>",
+            "author": {
+                "name": "JanousAI"
+            },
+            "tags": [
+            ],
+            "date_published": "2023-07-21T23:23:15+08:00",
+            "date_modified": "2023-07-21T23:23:15+08:00"
+        }
     ]
 }
