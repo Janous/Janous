@@ -1,0 +1,155 @@
+{{> head}}
+{{> top}}
+{{#checkIf @config.custom.frontSource '==' "post" }}
+   {{#checkIf @config.custom.frontPostTemplate '==' "default" }}
+      {{> frontpage-post}}
+   {{else}}
+      {{> frontpage-post-alternative}}
+   {{/checkIf}}
+{{else}}
+   <main class="main l-grid l-grid--{{@config.custom.layoutFrontpage}}">
+      {{#each posts}}
+         {{#if @config.custom.frontAd}}
+            {{#checkIf @config.custom.layoutFrontpage '==' "2col" }}
+               {{#checkIf @index '==' 6}}
+                  <div class="u-ads 2col__2span">
+                     <h3 class="u-ads__title">{{ translate 'listing.advertisement' }}</h3>
+                     {{{@config.custom.frontAdCode}}}
+                  </div>
+               {{/checkIf}}
+            {{/checkIf}}
+         {{/if}}
+         <article class="c-card">
+            {{#if @config.custom.frontAd}}
+               {{#checkIf @config.custom.layoutFrontpage '==' "1col" }}
+                  {{#checkIf @index '==' 5}}
+                     <div class="u-ads">
+                        <h3 class="u-ads__title">{{ translate 'listing.advertisement' }}</h3>
+                        {{{@config.custom.frontAdCode}}}
+                     </div>
+                  {{/checkIf}}
+               {{/checkIf}}
+               {{#checkIf @config.custom.layoutFrontpage '==' "2col-1-4" }}
+                  {{#checkIf @index '==' 5}}
+                     <div class="u-ads">
+                        <h3 class="u-ads__title">{{ translate 'listing.advertisement' }}</h3>
+                        {{{@config.custom.frontAdCode}}}
+                     </div>
+                  {{/checkIf}}
+               {{/checkIf}}
+               {{#checkIf @config.custom.layoutFrontpage '==' "2col-2-1" }}
+                  {{#checkIf @index '==' 5}}
+                     <div class="u-ads">
+                        <h3 class="u-ads__title">{{ translate 'listing.advertisement' }}</h3>
+                        {{{@config.custom.frontAdCode}}}
+                     </div>
+                  {{/checkIf}}
+               {{/checkIf}}
+            {{/if}}
+            <div class="c-card__wrapper">
+
+               {{#if @config.custom.cardsImage}}
+                  {{#featuredImage}}
+                     {{#if url}}
+                        <a
+                           href="{{../url}}"
+                           class="c-card__image">
+                           <img
+                              src="{{url}}"
+                              {{#if @config.site.responsiveImages}}
+                                 {{responsiveImageAttributes 'featuredImage' srcset.listing sizes.listing}}
+                              {{/if}}
+                              {{ lazyload "lazy" }}
+                              height="{{height}}"
+                              width="{{width}}"
+                              alt="{{alt}}">
+                        </a>
+                     {{/if}}
+                  {{/featuredImage}}
+               {{/if}}
+               
+               <header class="u-header">
+                  {{#checkIf @index '==' 0}}
+                     <h1 class="c-card__title {{#checkIf @config.custom.layoutFrontpage '==' "2col" }}h5{{/checkIf}}">
+                        <a href="{{url}}">
+                           {{title}}
+                        </a>
+                     </h1>
+                  {{else}}
+                     <h2 class="h5 c-card__title">
+                        <a href="{{url}}">
+                           {{title}}
+                        </a>
+                     </h2>
+                  {{/checkIf}}
+                  {{#checkIfAny @config.custom.cardsAuthorAvatar @config.custom.cardsAuthorName @config.custom.cardsDate @config.custom.cardsTag}}
+                     <div class="u-header__meta u-small">
+                        {{#if @config.custom.cardsAuthorAvatar}}
+                           {{#author}}
+                              {{#if avatar}}
+                                 <img 
+                                    src="{{avatarImage.url}}"                                
+                                    {{ lazyload "lazy" }}
+                                    class="u-header__avatar"
+                                    alt="{{avatarImage.alt}}" 
+                                    height="{{avatarImage.height}}" 
+                                    width="{{avatarImage.width}}">                                
+                              {{/if}}
+                           {{/author}}
+                        {{/if}}
+                        <div>
+                           {{#if @config.custom.cardsAuthorName}}
+                              {{#author}}
+                                 <a href="{{url}}" title="{{name}}">{{name}}</a>
+                              {{/author}}
+                           {{/if}}
+
+                           {{#if @config.custom.cardsDate}}
+                              <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}">
+                                 {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                                    {{date createdAt @config.custom.formatDate}}
+                                 {{else}}
+                                    {{date createdAt @config.custom.formatDateCustom}}
+                                 {{/checkIf}}
+                              </time>
+                           {{/if}}
+                        </div>
+                        {{#if @config.custom.cardsTag}}
+                           {{#if mainTag}}
+                              <a href="{{mainTag.url}}" class="{{#featuredImage}}
+                                           {{#if url}}c-card__tag{{/if}}{{/featuredImage}} u-tag {{ getTagColor mainTag.slug @config.custom.tagColors}}">{{mainTag.name}}</a>
+                           {{/if}}
+                        {{/if}}
+                     </div>
+                  {{/checkIfAny}}
+               </header>
+            </div>
+            {{#if @config.custom.frontAd}}
+               {{#checkIf @config.custom.layoutFrontpage '==' "2col-4-1" }}
+                  {{#checkIf @index '==' 4}}
+                     <div class="u-ads u-ads--mt">
+                        <h3 class="u-ads__title">{{ translate 'listing.advertisement' }}</h3>
+                        {{{@config.custom.frontAdCode}}}
+                     </div>
+                  {{/checkIf}}
+               {{/checkIf}}
+               {{#checkIf @config.custom.layoutFrontpage '==' "2col-1-2" }}
+                  {{#checkIf @index '==' 3}}
+                     <div class="u-ads u-ads--mt">
+                        <h3 class="u-ads__title">{{ translate 'listing.advertisement' }}</h3>
+                        {{{@config.custom.frontAdCode}}}
+                     </div>
+                  {{/checkIf}}
+               {{/checkIf}}
+            {{/if}}
+         </article>
+      {{/each}}
+      {{#if @pagination}}
+            <nav class="pagination {{#checkIf @config.custom.layoutFrontpage '!=' "1col" }}2col__2span{{/checkIf}}">
+				{{> pagination}}
+		   </nav>
+        {{/if}}
+   </main>
+   {{> sidebar}}
+{{/checkIf}}
+{{> footer}}

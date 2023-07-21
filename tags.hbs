@@ -1,0 +1,106 @@
+{{> head}}
+{{> top}}
+<main class="main page page--tags">
+   <div class="page__header">      
+      <h1 class="page__title box__title">
+        {{ translate "tags.tagsPageTitle" tagsNumber }}
+      </h1>
+   </div>
+   <div class="l-grid l-grid--{{@config.custom.layoutTags}}">
+      {{#each tags}}
+         {{#if @config.custom.tagAd}}
+            {{#checkIf @config.custom.layoutTags '==' "2col" }}
+               {{#checkIf @index '==' 6}}
+                  <div class="u-ads 2col__2span">
+                     <h3 class="u-ads__title">{{ translate 'listing.advertisement' }}</h3>
+                     {{{@config.custom.tagAdCode}}}
+                  </div>
+               {{/checkIf}}
+            {{/checkIf}}
+         {{/if}}
+         <article class="c-card">
+            {{#if @config.custom.tagAd}}
+               {{#checkIf @config.custom.layoutTags '==' "1col" }}
+                  {{#checkIf @index '==' 5}}
+                     <div class="u-ads">
+                        <h3 class="u-ads__title">{{ translate 'listing.advertisement' }}</h3>
+                        {{{@config.custom.tagAdCode}}}
+                     </div>
+                  {{/checkIf}}
+               {{/checkIf}}
+               {{#checkIf @config.custom.layoutTags '==' "2col-1-4" }}
+                  {{#checkIf @index '==' 5}}
+                     <div class="u-ads">
+                        <h3 class="u-ads__title">{{ translate 'listing.advertisement' }}</h3>
+                        {{{@config.custom.tagAdCode}}}
+                     </div>
+                  {{/checkIf}}
+               {{/checkIf}}
+               {{#checkIf @config.custom.layoutTags '==' "2col-2-1" }}
+                  {{#checkIf @index '==' 5}}
+                     <div class="u-ads">
+                        <h3 class="u-ads__title">{{ translate 'listing.advertisement' }}</h3>
+                        {{{@config.custom.tagAdCode}}}
+                     </div>
+                  {{/checkIf}}
+               {{/checkIf}}
+            {{/if}}
+
+            <div class="c-card__wrapper">
+              
+               {{#if @config.custom.cardsImage}}
+                  {{#featuredImage}}
+                     {{#if url}}
+                        <a
+                           href="{{../url}}"
+                           class="c-card__image">
+                           <img
+                              src="{{url}}"
+                              {{#if @config.site.responsiveImages}}
+                                 {{responsiveImageAttributes 'tagImage' srcset sizes}}
+                              {{/if}}
+                              {{ lazyload "lazy" }}
+                              height="{{height}}"
+                              width="{{width}}"
+                              alt="{{alt}}">
+                        </a>
+                     {{/if}}
+                  {{/featuredImage}}
+               {{/if}}
+               
+               <header class="u-header">                  
+                     <h2 class="h5 c-card__title">
+                        <a href="{{url}}">
+                           {{name}}
+                        </a>
+                     </h2>                                 
+                     <div class="u-header__meta u-small">
+                        {{postsNumber}}  {{ translate "tags.post" (math postsNumber '+' 0)}}             
+                     </div>             
+               </header>
+               
+            </div>
+            {{#if @config.custom.tagAd}}
+               {{#checkIf @config.custom.layoutTags '==' "2col-4-1" }}
+                  {{#checkIf @index '==' 4}}
+                     <div class="u-ads u-ads--mt">
+                        <h3 class="u-ads__title">{{ translate 'listing.advertisement' }}</h3>
+                        {{{@config.custom.tagAdCode}}}
+                     </div>
+                  {{/checkIf}}
+               {{/checkIf}}
+               {{#checkIf @config.custom.layoutTags '==' "2col-1-2" }}
+                  {{#checkIf @index '==' 3}}
+                     <div class="u-ads u-ads--mt">
+                        <h3 class="u-ads__title">{{ translate 'listing.advertisement' }}</h3>
+                        {{{@config.custom.tagAdCode}}}
+                     </div>
+                  {{/checkIf}}
+               {{/checkIf}}
+            {{/if}}
+         </article>
+      {{/each}}
+   </div>
+</main>
+{{> sidebar}}
+{{> footer}}

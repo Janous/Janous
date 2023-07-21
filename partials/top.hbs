@@ -1,0 +1,36 @@
+<header class="topbar" id="js-header">
+    <div class="topbar__inner">
+            <a class="logo" href="{{@website.url}}">
+                {{#if @website.logo}}
+                    <img src="{{@website.logo}}" alt="{{@website.name}}" width="{{@website.logoSize.width}}" height="{{@website.logoSize.height}}">
+                {{else}}
+                    {{@website.name}}
+                {{/if}}
+            </a>
+            {{#if menus.mainMenu}}
+                {{> menu menus.mainMenu}}
+            {{/if}}
+        </div>
+    </header>
+    <div class="content">
+        {{#checkIfAny @config.custom.topLatestSync @config.custom.search}}
+            <div class="infobar">
+                {{#if @config.custom.topLatestSync}}
+                    <div class="infobar__update">
+                        {{ translate 'partials.top.lastUpdated' }}
+                        <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}">
+                            {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                                {{date @website.lastUpdate @config.custom.formatDate}}
+                            {{else}}
+                                {{date @website.lastUpdate @config.custom.formatDateCustom}}
+                            {{/checkIf}}
+                        </time>
+                    </div>
+                {{/if}}
+                {{#if @config.custom.searchFeature}}
+                    <div class="infobar__search">
+                         {{{@customSearchInput}}}
+                    </div>
+                {{/if}}
+            </div>
+        {{/checkIfAny}}
