@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://bokebe.github.io/sitemap.xml
